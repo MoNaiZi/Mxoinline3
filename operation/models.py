@@ -66,7 +66,6 @@ class UserMessage(models.Model):
         verbose_name_plural = verbose_name
 
 
-#用户课程表
 
 
 

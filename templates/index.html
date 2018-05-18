@@ -26,7 +26,7 @@
                         
                         <a style="color:white" class="fr registerbtn" href="">注册</a>
                         <a style="color:white" class="fr loginbtn" href="/login/">登录</a>
-						
+					{% if request.user.is_authenticated %}
 						<div class="personal">
                             <dl class="user fr">
                                 <dd>bobby<img class="down fr" src="/static/images/top_down.png"/></dd>
@@ -52,7 +52,9 @@
 			</div>
 
             <div class="middle">
+                {% else %}
                 <div class="wp">
+                {% endif %}
                     <a href="index.html"><img class="fl" src="/static/images/logo.jpg"/></a>
                     <div class="searchbox fr">
                         <div class="selectContainer fl">

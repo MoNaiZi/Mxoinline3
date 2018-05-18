@@ -29,7 +29,7 @@ def user_login(request):
         return render(request,'login.html')
 
     else:
-        return render(request, 'login.html', {"msg": "用户名或密码错误！"})
+        return render(request, "user/login.html", {"msg": "用户名或密码错误! "})
 
 
 

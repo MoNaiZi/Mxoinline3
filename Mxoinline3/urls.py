@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 import xadmin
 from django.views.generic import TemplateView
-from  users.views import login
+from  users.views import user_login
 
 
 urlpatterns = [
@@ -24,7 +24,7 @@ urlpatterns = [
     #TemplateView.as_view会将template转换为view
     url('^$',TemplateView.as_view(template_name='index.html'),name='index'),
     # url('^login/$',TemplateView.as_view(template_name='login.html'),name='login'),
-    url('^login/$',login,name='login'),
+    url('^login/$',user_login,name='login'),
 ]
 
 

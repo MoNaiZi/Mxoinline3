@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#放到包里面要这样操作
+# 放到包里面要这样操作
 sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
 sys.path.insert(0,os.path.join(BASE_DIR,'extra_apps'))
 
@@ -44,8 +44,18 @@ INSTALLED_APPS = [
     'operation',
     'organization',
     'xadmin',
-    'crispy_forms'
+    'crispy_forms',
+    'captcha',
+    'pure_pagination',
 ]
+
+# 分页参数
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED':10,
+    'MARGIN_PAGES_DISPLAYED':2,
+    'SHOW_FIRST_PAGE_WHEN_INVALID':True, # 输入页数不合法是否要跳到第一页
+}
+
 #此处重载是为了使我们的UserProgile生效
 AUTH_USER_MODEL = 'users.UserProfile'
 
@@ -78,6 +88,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 添加图片处理器：为了在课程机构列表中前面加上MEDIA_URL
+                'django.core.context_processors.media'
             ],
         },
     },
@@ -140,3 +152,15 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [(os.path.join(BASE_DIR,'static'))]
+
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "358665514@qq.com"
+EMAIL_HOST_PASSWORD = "cjykcetieurzbida"
+EMAIL_USE_TLS= True
+EMAIL_FROM = "358665514@qq.com"
+
+
+# 设置我们上传文件的路径
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')

@@ -12,7 +12,7 @@ class UserProfile(AbstractUser):
     # 昵称（verbsoe_name就是取数据库导出成csv成的表的头一个字段）
     nick_name = models.CharField(max_length=50,verbose_name='昵称',default='')
     # 生日
-    birthday = models.DateTimeField(verbose_name='生日',null=True,blank=True)
+    birthday = models.DateField(verbose_name='生日',null=True,blank=True)
     # 性别 只能男或女 ，默认女
     gender = models.CharField(
         max_length=6,
@@ -69,7 +69,7 @@ class Banner(models.Model):
         max_length=100,
     )
     url = models.URLField(max_length=200,verbose_name='访问地址')
-    #默认index很大靠后。想要靠前修改index值。
+    # 默认index很大靠后。想要靠前修改index值。
     index = models.IntegerField(default=100,verbose_name='顺序')
     add_time = models.DateTimeField(default=datetime.now,verbose_name='添加时间')
 

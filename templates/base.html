@@ -19,15 +19,15 @@
     <header>
 		<div  class=" header">
  			<div class="top">
-				{% if request.user.is_authenticated %}
-                    <div class="personal">
-                            <dl class="user fr">
-                                <dd>{{ user.username }}<img class="down fr" src="/static/images/top_down.png"/></dd>
-                                <dt><img width="20" height="20" src="/static/media/image/2016/12/default_big_14.png"/></dt>
+			{% if request.user.is_authenticated %}
+             <div class="personal">
+              <dl class="user fr">
+                                <dd>{{ user.username }}<img class="down fr" src="{% static 'static/images/top_down.png' %}"/></dd>
+                                <dt><img width="20" height="20" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
                             </dl>
-                            <div class="userdetail">
+                 <div class="userdetail">
                             	<dl>
-	                                <dt><img width="80" height="80" src="/static/media/image/2016/12/default_big_14.png"/></dt>
+	                                <dt><img width="80" height="80" src="{{ MEDIA_URL }}{{ user.image }}"/></dt>
 	                                <dd>
 	                                    <h2>django</h2>
 	                                    <p>{{ user.username }}</p>
@@ -38,7 +38,7 @@
 	                                <a class="fr" href="{% url 'logout' %}">退出</a>
                                 </div>
                             </div>
-                        </div>
+               </div>
 
              {% else %}
                  <div class="wp">
@@ -82,15 +82,15 @@
 					<div class="wp">
 						<ul>
 							<li {% ifequal '/' request.path %}class="active"{% endifequal %}><a href="{% url 'index' %}">首页</a></li>
-							<li {% ifequal '/course' request.path|slice:":7"%}class="active"{% endifequal %}>
+							<li {% ifequal '/course' request.path|slice:"7"%}class="active"{% endifequal %}>
 								<a href="{% url 'course:course_list' %}">
 									公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
 								</a>
 							</li>
-							<li {% ifequal '/org/teacher' request.path|slice:":12" %}class="active"{% endifequal %}>
+							<li {% ifequal '/org/teacher' request.path|slice:"12" %}class="active"{% endifequal %}>
 								<a href="{% url 'org:teacher_list' %}">授课教师</a>
 							</li>
-							<li {% ifequal '/org/list' request.path|slice:":9" %}class="active"{% endifequal %} ><a href="{% url 'org:org_list' %}">授课机构</a></li>
+							<li {% ifequal '/org/list' request.path|slice:"9" %}class="active"{% endifequal %} ><a href="{% url 'org:org_list' %}">授课机构</a></li>
 						</ul>
 					</div>
 				</div>

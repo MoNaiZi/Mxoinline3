@@ -1,21 +1,11 @@
 {% extends 'usercenter-base.html' %}
 {% load staticfiles %}
-<body>
-
-{% block courstom_bread %}
-    <section>
-        <div class="wp">
-            <ul  class="crumbs">
-                <li><a href="index.html">首页</a>></li>
-                <li><a href="/user/home/">个人中心</a>></li>
-                <li>我的收藏</li>
-            </ul>
-        </div>
-    </section>
-{% endblock %}
 
 
-{% block right_form %}
+
+
+
+{% block right_conent %}
 <section>
     <div class="right" >
             <div class="personal_des Releasecont">
@@ -26,15 +16,15 @@
             <div class="personal_des permessage">
                 <div class="head">
                     <ul class="tab_header messagehead">
-                        <li><a href="usercenter-fav-course.html">课程机构</a> </li>
-                        <li><a href="usercenter-fav-teacher.html">授课教师 </a></li>
-                        <li class="active"><a href="usercenter-fav-course.html">公开课程</a></li>
+                        <li><a href="{% url 'users:fav_org' %}">课程机构</a> </li>
+                        <li><a href="{% url 'users:fav_teacher' %}">授课教师 </a></li>
+                        <li class="active"><a href="{% url 'users:fav_course' %}">公开课程</a></li>
                     </ul>
 
                 </div>
                 <div class="companycenter">
                     <div class="group_list brief">
-                        {% for fav_course in all_course %}
+                        {% for fav_course in course %}
                         <div class="module1_5 box">
                             <a href="course-detail.html">
                                 <img width="214" height="190" src="{{ MEDIA_URL }}{{ fav_course.image }}"/>
@@ -59,5 +49,3 @@
 	</div>
 </section>
 {% endblock %}
-
-{% block custom_js %}{% endblock %}

@@ -56,7 +56,7 @@ PAGINATION_SETTINGS = {
     'SHOW_FIRST_PAGE_WHEN_INVALID':True, # 输入页数不合法是否要跳到第一页
 }
 
-#此处重载是为了使我们的UserProgile生效
+# 此处重载是为了使我们的UserProgile生效
 AUTH_USER_MODEL = 'users.UserProfile'
 
 # 设置邮箱和用户名均可登录

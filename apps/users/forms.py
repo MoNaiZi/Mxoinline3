@@ -50,7 +50,7 @@ class ModifyPwdForm(forms.Form):
 
 # 用于个人中心修改个人信息
 class UserInfoForm(forms.ModelForm):
-
+    # 把需要提交都传进来
     class Meta:
         model = UserProfile
         fields = ['nick_name','gender','birthday','address','mobile']

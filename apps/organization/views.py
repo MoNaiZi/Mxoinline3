@@ -96,6 +96,8 @@ class OrgHomeView(View):
         current_page = 'home' # 向org_base传递值，表明现在在home页
         # 根据id取到课程机构
         course_org = CourseOrg.objects.get(id = int(org_id))
+        course_org.click_nums +=1
+        course_org.save()
         # 通过课程机构找到课程。内建的变量，找到指向这个字段的外键引用
         all_courses = course_org.course_set.all()[:4] #
         all_teacher = course_org.teacher_set.all()[:2] #
@@ -270,6 +272,9 @@ class TeacherDetailView(View):
     def get(self,request,teacher_id):
         teacher = Teacher.objects.get(id = int(teacher_id))
         all_course = teacher.course_set.all()
+        # 课程点击数
+        teacher.fav_nums += 1
+        teacher.save()
         # 排行榜讲师
         rank_teacher = Teacher.objects.all().order_by("-fav_nums")[:5]
         # 收藏

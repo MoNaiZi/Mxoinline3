@@ -21,6 +21,7 @@ class Course(models.Model):
     category = models.CharField(max_length=20,default="后端开发",verbose_name='课程类别')
     # TextField可以输入无限大
     detail = models.TextField(verbose_name='课程详情')
+    is_banner = models.BooleanField('是否轮播',default=False)
     degree = models.CharField(choices=DEGREE_CHOICES,max_length=2)
     # 使用分钟做后台记录（存储最小单位）前台转换
     learn_times = models.IntegerField(default=0,verbose_name='学习时长（分钟数)')
@@ -37,7 +38,7 @@ class Course(models.Model):
     add_time = models.DateTimeField(default=datetime.now,verbose_name='添加时间')
 
     def get_zj_nums(self):
-        # 获取课程章节数的方法 lesson_stet 反向取值
+        # 获取课程章节数的方法 lesson_ste 反向取值
         return self.lesson_set.all().count()
 
 

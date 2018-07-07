@@ -47,7 +47,7 @@ class UserFavorite(models.Model):
     #     (3,'讲师'),
     # )
     user = models.ForeignKey(UserProfile,verbose_name='用户')
-    # 直接保存用户的Id
+    # 直接保存用户的Id,对应收藏的类型
     fav_id = models.IntegerField(default=0,verbose_name='数据id')
     # 表明收藏的是那种类型.
     fav_type = models.IntegerField(
@@ -91,9 +91,9 @@ class UserCourse(models.Model):
     user = models.ForeignKey(UserProfile,verbose_name='用户')
     add_time = models.DateTimeField(default=datetime.now,verbose_name='添加时间')
 
+
     def __str__(self):
         return '用户({0})学习了{1} '.format(self.user, self.course)
-
 
     class Meta:
         verbose_name = '用户课程'

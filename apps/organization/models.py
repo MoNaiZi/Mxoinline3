@@ -43,6 +43,7 @@ class CourseOrg(models.Model):
     # 一个城市可以有很多课程机构，通过city设置外键，变成课程机构的一个字段
     # 可以让我们通过机构找到城市
     city = models.ForeignKey(CityDict,verbose_name='所在城市')
+    tag = models.CharField('机构标签',max_length=10,default='全国知名')
     add_time = models.DateTimeField(default=datetime.now,verbose_name='添加时间')
 
     def get_teacher_nums(self):
@@ -77,6 +78,10 @@ class Teacher(models.Model):
         verbose_name= '头像',
         max_length=100
     )
+
+    # 获取课程数(这个用户专属的）
+    def get_cour_nums(self):
+        return self.course_set.all().count()
 
     def __str__(self):
         return '[{0}]的教师: {1}'.format(self.org,self.name)

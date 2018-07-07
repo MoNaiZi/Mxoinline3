@@ -14,7 +14,7 @@
     </section>
 {% endblock %}
 
-{% block right_form %}
+{% block right_conent %}
 <section>
     <div class="right" >
 		<div class="personal_des Releasecont">
@@ -25,19 +25,19 @@
 		<div class="personal_des permessage">
 			<div class="companycenter">
 				<div class="group_list brief">
-                    {% for course in all_course %}
+                    {% for all_course in all_course %}
                     <div class="module1_5 box">
-                            <a href="{% url 'course:course_detail' course.id %}">
-                                <img width="214" height="190" class="scrollLoading" src="{{ MEDIA_URL }}{{ course.image }}"/>
+                            <a href="{% url 'course:course_detail' all_course.course.id %}">
+                                <img width="214" height="190" class="scrollLoading" src="{{ MEDIA_URL }}{{ all_course.course.image }}"/>
                             </a>
                             <div class="des">
-                                <a href="{% url 'course:course_detail' course.id %}"><h2>{{ course.name }}</h2></a>
-                                <span class="fl">课时：<i class="key">{{ course.learn_times }}</i></span>
-                                <span class="fr">学习人数：{{ course.students }}</span>
+                                <a href="{% url 'course:course_detail' all_course.course.id %}"><h2>{{ all_course.course.name }}</h2></a>
+                                <span class="fl">课时：<i class="key">{{ all_course.course.learn_times }}</i></span>
+                                <span class="fr">学习人数：{{ all_course.course.students }}</span>
                             </div>
                             <div class="bottom">
-                                <span class="fl">{{ course.course_org }}</span>
-                                <span class="star fr  notlogin" data-favid="15">{{ course.fav_nums }}</span>
+                                <span class="fl">{{ all_course.course.course_org }}</span>
+                                <span class="star fr  notlogin" data-favid="15">{{ all_course.course.fav_nums }}</span>
                             </div>
                         </div>
                     {% endfor %}

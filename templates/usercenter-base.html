@@ -88,11 +88,12 @@
 	<div class="wp list personal_list">
 	<div class="left">
         <ul>
-            <li class="active2"><a href="{% url 'users:user_info' %}">个人资料</a></li>
-            <li ><a href="{% url 'users:user_mycourse' %}">我的课程</a></li>
-            <li ><a href="{% url 'users:fav_course' %}">我的收藏</a></li>
-            <li >
-                <a href="usercenter-message.html" style="position: relative;">
+            <li {% ifequal  '/users/info/' request.path %} class="active2"{% endifequal %}><a href="{% url 'users:user_info' %}">个人资料</a></li>
+            <li {% ifequal  '/users/mycourse/' request.path %} class="active2"{% endifequal %}><a href="{% url 'users:user_mycourse' %}">我的课程</a></li>
+{#            <li {% ifequal '/user/mycourse/' request.path %} class="active2"{% endifequal %} ><a href="{% url 'users:user_mycourse' %}">我的课程</a></li>#}
+            <li {% ifequal '/users/fav_org/' request.path|slice:'15' %} class="active2"{% endifequal %} ><a href="{% url 'users:fav_org' %}">我的收藏</a></li>
+            <li {% ifequal '/users/message/' request.path|slice:'15' %} class="active2"{% endifequal %}>
+                <a href="{% url 'users:message' %}" style="position: relative;">
                     我的消息
                 </a>
             </li>
@@ -119,7 +120,7 @@
 <div class="dialog" id="jsDialog">
     <div class="successbox dialogbox" id="jsSuccessTips">
         <h1>成功提交</h1>
-        <div class="close jsCloseDialog"><img src="../images/dig_close.png"/></div>
+        <div class="close jsCloseDialog"><img src="{% static 'images/dig_close.png"' %}"/></div>
         <div class="cont">
             <h2>您的需求提交成功！</h2>
             <p></p>
@@ -128,7 +129,7 @@
     <!--提示弹出框-->
     <div class="bidtips dialogbox promptbox" id="jsComfirmDialig">
         <h1>确认提交</h1>
-        <div class="close jsCloseDialog"><img src="../images/dig_close.png"/></div>
+        <div class="close jsCloseDialog"><img src="{% static 'images/dig_close.png"' %}"/></div>
         <div class="cont">
             <h2>您确认提交吗？</h2>
             <dd class="autoTxtCount">

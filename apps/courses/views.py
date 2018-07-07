@@ -5,9 +5,11 @@ from courses.models import Course,CourseResource
 from pure_pagination import Paginator,EmptyPage,PageNotAnInteger
 from operation.models import UserFavorite,CourseComments,UserCourse
 from .models import Video
+from users.models import Banner
 from django.http import HttpResponse
 # django 自带的用法，要求登陆
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 class CourseListView(View):
     """

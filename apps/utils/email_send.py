@@ -1,5 +1,5 @@
 # encoding:utf-8
-__author = 'mtianyan'
+__author = 'ZMY'
 __date__ = '2018/5/21 8:08'
 from random import Random
 from users.models import EmailVerifyRecord
@@ -50,7 +50,7 @@ def send_register_eamil(email, send_type="register"):
             pass
 
     elif send_type == "forget":
-        email_title = "mtianyan慕课小站 找回密码链接"
+        email_title = "ZMY慕课小站 找回密码链接"
         email_body = loader.render_to_string(
             "email_forget.html",  # 需要渲染的html模板
             {

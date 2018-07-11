@@ -1,5 +1,6 @@
 
 PLUGINS = (
+    'ueditor',
     'actions', 
     'filters', 
     'bookmark', 

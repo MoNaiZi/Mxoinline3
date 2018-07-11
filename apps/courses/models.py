@@ -2,6 +2,7 @@
 from django.db import models
 from datetime import datetime
 from organization.models import CourseOrg,Teacher
+from DjangoUeditor.models import UEditorField
 
 
 # 课程信息
@@ -19,8 +20,8 @@ class Course(models.Model):
     desc = models.CharField(max_length=300,verbose_name='课程描述')
     tag = models.CharField(max_length=15,verbose_name='课程标签',default='')
     category = models.CharField(max_length=20,default="后端开发",verbose_name='课程类别')
-    # TextField可以输入无限大
-    detail = models.TextField(verbose_name='课程详情')
+    # 富文本编辑器领域
+    detail = UEditorField(verbose_name='课程详情',width=600,height=300,imagePath="courses/ueditor/",filePath='courses/ueditor/',default='')
     is_banner = models.BooleanField('是否轮播',default=False)
     degree = models.CharField(choices=DEGREE_CHOICES,max_length=2)
     # 使用分钟做后台记录（存储最小单位）前台转换
@@ -40,7 +41,13 @@ class Course(models.Model):
     def get_zj_nums(self):
         # 获取课程章节数的方法 lesson_ste 反向取值
         return self.lesson_set.all().count()
+    get_zj_nums.short_description = '章节数' # 后台显示的名称
 
+    def go_to(self):
+        from django.utils.safestring import mark_safe
+        # mark_safe后就不用转义
+        return mark_safe("<a href='http://zhongminyong.tech/'>跳转</a>")
+    go_to.short_description = '跳转'
 
     # 获取学习这门课程的用户
     def get_learn_users(self):
@@ -124,3 +131,13 @@ class CourseResource(models.Model):
     class Meta:
         verbose_name='课程资源'
         verbose_name_plural=verbose_name
+
+
+# 显示轮播图课程
+class BannerCourse(Course):
+    class Meta:
+        verbose_name = '轮播课程'
+        verbose_name_plural = verbose_name
+        # 设置proxy=True，这样就不会再生成一张表，同时还具有Model的功能
+        proxy = True
+

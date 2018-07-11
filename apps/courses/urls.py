@@ -1,5 +1,5 @@
 # encoding: utf-8
-__author__ = 'mtianyan'
+__author__ = 'ZMY'
 __date__ = '2018/6/14 21:01'
 
 from courses.views import CourseListView,CourseDetailView,CourseInfoView,CommentsView,AddCommentsView,VideoPlayView

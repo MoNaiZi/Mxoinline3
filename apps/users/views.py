@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from courses.models import Course
 from pure_pagination import Paginator,EmptyPage,PageNotAnInteger
 from .models import Banner
+from django.shortcuts import render_to_response
 
 # 自定义authenticate方法
 from django.contrib.auth.backends import ModelBackend
@@ -29,15 +30,48 @@ class IndexView(View):
         # 课程
         courses = Course.objects.filter(is_banner=False)[:6]
         # 轮播图课程
-        banner_courses = Course.objects.filter(is_banner=True)[:3]
+        banner_courses = Course.objects.filter(is_banner=True)[:2]
         # 课程机构
-        course_org = Course.objects.all()[:15]
+        course_org = CourseOrg.objects.all()[:15]
         return render(request,'index.html',{
             'all_banners':all_banners,
             'courses':courses,
             'banner_courses':banner_courses,
-            'course_orgs':course_org,
+            'course_org':course_org,
         })
+
+
+# 404
+def pag_not_found(request):
+    response = render_to_response('404.html',{})
+    response.status_code = 404
+    return response
+
+
+# 505
+def page_error(request):
+    response = render_to_response('500.html',{})
+    response.status_code = 500
+    return response
+
+
+# sql注入测试代码（登陆）
+# class LoginUnsafeView(View):
+#     def get(self,request):
+#         return render(request,'login.html',{})
+#     def post(self,request):
+#         user_name = request.POST.get('username','')
+#         pass_word = request.POST.get('password','')
+#
+#         import MySQLdb
+#         conn = MySQLdb.connect(host = '127.0.0.1',user = 'root',passwd = 'root',db = 'mxonline3', charset = 'utf8')
+#         cursor = conn.cursor()
+#         sql_select = "select * from users_userprofile where email='{0}' and  password='{1}'".format(user_name,pass_word)
+#         result = cursor.execute(sql_select)
+#         for row in cursor.fetchall():
+#             # 查询到用户
+#             pass
+#         print('test')
 
 
 class LoginView(View):

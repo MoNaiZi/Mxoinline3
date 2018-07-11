@@ -27,8 +27,10 @@ SECRET_KEY = '1etd6+&)$-2q$s(#+4roj1-^o09rd$@@shrorz_nu14hw%yzk5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['*']
 
+# 静态文件
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # Application definition
 
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'captcha',
     'pure_pagination',
+    'DjangoUeditor',
 ]
 
 # 分页参数
@@ -63,6 +66,7 @@ AUTH_USER_MODEL = 'users.UserProfile'
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
 )
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

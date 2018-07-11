@@ -1,5 +1,5 @@
 # encoding: utf-8
-__author__ = 'mtianyan'
+__author__ = 'ZMY'
 __date__ = '2018/5/31 8:03'
 
 from organization.views import OrgView,AddUserAskView,OrgHomeView,OrgCourseView,TeacherListView

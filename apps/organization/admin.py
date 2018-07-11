@@ -1,23 +1,24 @@
 # encoding: utf-8
-__author__ = 'mtianyan'
+__author__ = 'ZMY'
 __date__ = '2018/5/14 0009 20:41'
 
 import xadmin
 from .models import CityDict,CourseOrg,Teacher
 
 
-#机构所属城市名后台管理器
+# 机构所属城市名后台管理器
 class CityDictAdmin(object):
     list_display = ['name','desc','add_time']
     search_fields = ['name','desc']
     list_filter = ['name','desc','add_time']
 
 
-#机构课程信息管理器
+# 机构课程信息管理器
 class CourseOrgAdmin(object):
     list_display = ['name','desc','category','click_nums','fav_nums','add_time']
     search_fields = ['name','desc','category','click_nums','fav_nums']
     list_filter = ['name','desc','category','click_nums','fav_nums','city__name','address','add_time']
+    relfield_style = 'fk-ajax'
 
 
 class TeacherAdmin(object):
